@@ -1,6 +1,6 @@
-package com.a.b.service;
+package com.a.b.service.impl.dao;
 
-public interface HomeService {
+public interface HomeMapper {
 
 	String getDbTest() throws Exception;
 

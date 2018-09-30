@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="asg.dtdv1002.Sample">
+<mapper namespace="com.a.b.service.impl.dao.HomeMapper">
+
+<select id="getDbTest" parameterType="String" resultType="String">
+
+SELECT * FROM JOBS WHERE JOB_ID = 1
+	
+	
+</select>
+
+<insert id="insertDbTest" parameterType="String">
+INSERT INTO JOBS (JOB_ID) VALUES ((SELECT MAX(JOB_ID)+1 FROM JOBS))
+
+</insert>
 
 </mapper>
