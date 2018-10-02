@@ -4,5 +4,6 @@
 
 <configuration>
     <typeAliases>
+    	<typeAlias alias="hwyMap" type="com.a.b.cmmn.utils.HwyMap"/>
     </typeAliases>
 </configuration>

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import javax.sql.DataSource;
+
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,37 +15,35 @@ import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
 import org.springframework.transaction.interceptor.RollbackRuleAttribute;
 import org.springframework.transaction.interceptor.RuleBasedTransactionAttribute;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 
-@Aspect
 @Configuration
+@ImportResource("classpath:/spring/context-transaction.xml")
 public class TransactionConfig {
-	
-	@Autowired
-	private PlatformTransactionManager transactionManager;
 	
 	Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private static final int TX_METHOD_TIMEOUT = 5;
+	//private static final int TX_METHOD_TIMEOUT = 5;
 	
-//    @Bean
-//    public DataSourceTransactionManager txManager(DataSource dataSource) {
-//    	log.info(">>>>>>>>>>txManager");
-//    	DataSourceTransactionManager txManager = new DataSourceTransactionManager();
-//    	txManager.setDataSource(dataSource);
-//    	return txManager;
-//    }
-    
     @Bean
+    public DataSourceTransactionManager txManager(DataSource dataSource) {
+    	log.info(">>>>>>>>>>txManager");
+    	DataSourceTransactionManager txManager = new DataSourceTransactionManager();
+    	txManager.setDataSource(dataSource);
+    	return txManager;
+    }
+    
+    /*@Bean
     public TransactionInterceptor txAdvice() {
     	log.info(">>>>>>>>>>txAdvice");
     	
-    	/*MatchAlwaysTransactionAttributeSource txaSource = new MatchAlwaysTransactionAttributeSource();
+    	MatchAlwaysTransactionAttributeSource txaSource = new MatchAlwaysTransactionAttributeSource();
     	
     	RuleBasedTransactionAttribute txAttribute = new RuleBasedTransactionAttribute();
     	
@@ -57,7 +57,7 @@ public class TransactionConfig {
     	txAdvice.setTransactionAttributeSource(txaSource);
 		txAdvice.setTransactionManager(transactionManager);
     	
-    	return txAdvice;*/
+    	return txAdvice;
     	
     	TransactionInterceptor txAdvice = new TransactionInterceptor();
     	Properties txAttributes = new Properties();
@@ -84,16 +84,16 @@ public class TransactionConfig {
 		txAdvice.setTransactionAttributes(txAttributes);
 		txAdvice.setTransactionManager(transactionManager);
 
-        return txAdvice;
-    }
+        return txAdvice; 
+    }*/
     
-    @Bean
+    /*@Bean
     public Advisor txAdviceAdvisor() {
     	log.info(">>>>>>>>>>txAdviceAdvisor");
     	AspectJExpressionPointcut pointCut = new AspectJExpressionPointcut();
     	pointCut.setExpression("(execution(* com.a.b.service.impl.*Impl.*(..))");
     	
-    	/*
+    	*
     	 * 1. * : 지시자(?), public private 등
     	 * 2. com. : com 패키지 밑에
     	 * 3. *..*. : 사이 많은 패키지 밑에
@@ -101,10 +101,10 @@ public class TransactionConfig {
     	 * 5. impl. : impl 패키지 밑에
     	 * 6. *Impl : Impl로 끝나는 클래스 밑에
     	 * 7. *(..) : 인자값이 0개 이상인 메서드
-    	 * */
+    	 * *
     	return new DefaultPointcutAdvisor(pointCut, txAdvice());
-    }
-
+    }*/
+    /*
 	private String readOnlyAttribute() {
 		log.info(">>>>>>>>>>readOnlyAttribute");
     	DefaultTransactionAttribute readOnlyAttribute 
@@ -113,8 +113,8 @@ public class TransactionConfig {
 		readOnlyAttribute.setTimeout(TX_METHOD_TIMEOUT);
 	
 		return readOnlyAttribute.toString();
-	}
-
+	}*/
+    /*
 	private String writeAttribute() {
 		log.info(">>>>>>>>>>writeAttribute");
     	List<RollbackRuleAttribute> rollbackRules = new ArrayList<RollbackRuleAttribute>();
@@ -125,5 +125,5 @@ public class TransactionConfig {
 		writeAttribute.setTimeout(TX_METHOD_TIMEOUT);
 		
 		return writeAttribute.toString();
-	}
+	}*/
 }

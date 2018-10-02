@@ -10,14 +10,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @PropertySource("classpath:/properties/local.properties")
 public class DataSourceConfig implements EnvironmentAware {
 	
-	private Environment env;
+	private Environment env; // env @Autowire 타이밍 문제로 EnvironmentAware를 implements 함
 	/*
 	 * 2018.09.29
 	 * @Value 사용하지 못함
@@ -40,7 +38,7 @@ public class DataSourceConfig implements EnvironmentAware {
 	}*/
 	
     @Bean
-    public DataSource getDataSource() {
+    public DataSource dataSourceSpied() {
     	log.info(">>>>>>>>>>dataSource");
     	try {
         	BasicDataSource basicDataSource = new BasicDataSource();
@@ -59,9 +57,10 @@ public class DataSourceConfig implements EnvironmentAware {
     	return null;
     }
     
-    @Bean
+    /* aop 설정 실패로 미사용
+     * @Bean
     public PlatformTransactionManager transactionManager() {
     	return new DataSourceTransactionManager(getDataSource());
-    }
+    }*/
     
 }
