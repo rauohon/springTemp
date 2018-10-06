@@ -1,9 +1,11 @@
 package com.a.b.service;
 
+import com.a.b.cmmn.utils.HwyMap;
+
 public interface HomeService {
 
-	String getDbTest() throws Exception;
+	String getDbTest(HwyMap hwyMap) throws Exception;
 
-	void insertDbTest() throws Exception;
+	void insertDbTest(HwyMap hwyMap) throws Exception;
 
 }

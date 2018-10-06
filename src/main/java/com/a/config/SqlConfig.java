@@ -32,7 +32,7 @@ public class SqlConfig {
     public MapperScannerConfigurer mapperScanner(DataSource dataSource) {
     	log.info(">>>>>>>>>>mapperScanner");
     	MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-    	mapperScannerConfigurer.setBasePackage("com.a.b.service.impl.dao");
+    	mapperScannerConfigurer.setBasePackage("com.a.b.cmmn.dao");
     	return mapperScannerConfigurer;
     }
 

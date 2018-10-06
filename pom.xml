@@ -194,30 +194,6 @@
 			<scope>runtime</scope>
 		</dependency>
 		
-		<dependency>
-            <groupId>com.googlecode.log4jdbc</groupId>
-            <artifactId>log4jdbc</artifactId>
-            <version>1.2</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        
-		<dependency>
-			<groupId>org.bgee.log4jdbc-log4j2</groupId>
-			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
-			<version>1.16</version>
-		</dependency>
-        
-        <dependency>
-		    <groupId>org.lazyluke</groupId>
-		    <artifactId>log4jdbc-remix</artifactId>
-		    <version>0.2.7</version>
-		</dependency>
-
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>

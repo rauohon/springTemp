@@ -3,7 +3,25 @@
 								"http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+	
+	
+    <settings>
+		<setting name="cacheEnabled" value="true"/>
+		<setting name="lazyLoadingEnabled" value="false"/>
+		<setting name="multipleResultSetsEnabled" value="false"/>
+		<setting name="useColumnLabel" value="true"/>
+		<setting name="useGeneratedKeys" value="false"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<setting name="jdbcTypeForNull" value="VARCHAR" />
+		<setting name="callSettersOnNulls" value="true" />
+	</settings>
+
     <typeAliases>
     	<typeAlias alias="hwyMap" type="com.a.b.cmmn.utils.HwyMap"/>
     </typeAliases>
+    
+	<plugins>
+		<plugin interceptor="com.a.b.cmmn.utils.MybatisLogInterceptor"/>
+	</plugins>
+    
 </configuration>
